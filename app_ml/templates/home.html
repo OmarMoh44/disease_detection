@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Choose inputs</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        {% for category in categories %}
+            <label for={{category}}>Select {{category}}:</label>
+            <select name={{category}} id={{category}} required>
+                {% for value in categories[category] %}
+                    <option value={{value}}>{{value}}</option>
+                {% endfor %}
+            </select>
+            <br>
+        {% endfor %}
+
+        {% for numeric in numerics %}
+            <label for={{numeric}}>Select {{numeric}}:</label>
+            <input type="number" step="any" name={{numeric}} id={{numeric}} min={{numerics[numeric][0]}} max={{numerics[numeric][1]}} required/>
+            <br>
+        {% endfor %}
+    
+        <label for='model'>Select model:</label>
+        <select name='model' id='model' required>
+            {% for model in models %}
+                <option value={{model}}>{{model}}</option>
+            {% endfor %}
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Prediction Result</h2>
+    {% if target is not none %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Prediction:</h4>
+            <p>The predicted class is: <strong>{{ target }}</strong></p>
+        </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Error:</h4>
+            <p>{{ error }}</p>
+        </div>
+    {% endif %}
+    <a href="/" class="btn btn-primary mt-3">Home</a>
+</div>
+{% endblock %}
